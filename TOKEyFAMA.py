@@ -46,12 +46,13 @@ def pick(slots):
     pos = [int(p) for p in range(10)]
     aux = []
     for i in range(5):
-        while not aux:
-            aux = [int(p) for p in pos if i in slots[p][:]]
-        num = np.random.choice(aux, 1)
-        pos.remove(num)
-        digits[i] = num
-        aux = []
+        a = [int(p) for p in pos if i in slots[p][:]]
+        aux.append(a)
+    flag = True
+    while flag:
+        digits = [int(np.random.choice(a, 1)) for a in aux]
+        if len(digits) == len(set(digits)):
+            flag = False
 
     return digits
 
